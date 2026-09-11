@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CodeAlpha Store{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a href="{% url 'product_list' %}" class="brand">Market<span>&</span>Craft</a>
+            <form class="search-form" action="{% url 'product_list' %}" method="get">
+                <input type="text" name="q" placeholder="Search products…" value="{{ query|default:'' }}">
+                <button type="submit">Search</button>
+            </form>
+            <nav class="nav-links">
+                <a href="{% url 'cart_detail' %}">Cart ({{ request.session.cart|length|default:0 }})</a>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'order_history' %}">My Orders</a>
+                    <span class="hello">Hi, {{ request.user.username }}</span>
+                    <a href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Log in</a>
+                    <a href="{% url 'register' %}" class="cta">Sign up</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrap">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="site-footer">
+        <div class="wrap">Built for the CodeAlpha Full Stack Development internship &mdash; Task 1: E-commerce Store.</div>
+    </footer>
+</body>
+</html>

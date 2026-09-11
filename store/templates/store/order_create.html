@@ -1,0 +1,23 @@
+{% extends "store/base.html" %}
+{% block title %}Checkout — Market & Craft{% endblock %}
+
+{% block content %}
+<div class="checkout-layout">
+    <form method="post" class="auth-form checkout-form">
+        <h1>Shipping details</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="cta">Place order</button>
+    </form>
+
+    <div class="order-summary">
+        <h2>Order summary</h2>
+        <ul>
+            {% for item in cart %}
+            <li>{{ item.quantity }} &times; {{ item.product.name }} — ₹{{ item.total_price }}</li>
+            {% endfor %}
+        </ul>
+        <p class="cart-total">Total: <strong>₹{{ cart.get_total_price }}</strong></p>
+    </div>
+</div>
+{% endblock %}
