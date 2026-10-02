@@ -1,4 +1,4 @@
-﻿# CodeAlpha_EcommerceStore
+# EcommerceStore
 
 A full-stack e-commerce store built with **Django** for the **CodeAlpha Full Stack Development Internship - Task 1**.
 
@@ -40,8 +40,8 @@ manage.py             # Django management utility
 ### 1. Clone the repository
 
 ```powershell
-git clone https://github.com/ashutosh-chauhan-dev/CodeAlpha_EcommerceStore.git
-cd CodeAlpha_EcommerceStore
+git clone https://github.com/ashutosh-chauhan-dev/EcommerceStore.git
+cd EcommerceStore
 ```
 
 ### 2. Create and activate a virtual environment
@@ -116,3 +116,4 @@ python manage.py makemigrations --check
 ```
 
 Both commands should complete without errors.
+
